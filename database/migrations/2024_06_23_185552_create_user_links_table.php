@@ -13,16 +13,18 @@ return new class extends Migration
     {
         Schema::create('user_links', function (Blueprint $table) {
             $table->id();
-            $table->foreign('user_id','id')->references('id')->on('user');
+            $table->unsignedBigInteger('user_id'); // Define the foreign key column
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); // Correct foreign key definition
             $table->string('code')->unique(); // unique identifier
             $table->string('url'); // original url
             $table->string('qrcode_location')->nullable();
             $table->string('password')->nullable();
             $table->integer('clicks')->default(0);
-            $table->boolean('deleted')->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
+
 
     /**
      * Reverse the migrations.
