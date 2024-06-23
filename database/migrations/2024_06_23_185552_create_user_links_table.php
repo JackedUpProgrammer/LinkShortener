@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('url'); // original url
             $table->string('qrcode_location')->nullable();
             $table->string('password')->nullable();
-            $table->integer('clicks')->default(1);
+            $table->integer('clicks')->default(0);
             $table->boolean('deleted')->default(false);
             $table->timestamps();
         });
